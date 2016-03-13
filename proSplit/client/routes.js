@@ -41,8 +41,8 @@ Router.route('/addEvent', function(){
 });
 
 Router.route('/event/:title',{
-    layout:'layout',
-    template: 'eventDetail',
+    //layout:'layout',
+    template: 'eventDetailView',
     data:function(){
         return Events.findOne({title:this.params.title});
     }
