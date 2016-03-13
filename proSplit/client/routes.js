@@ -39,3 +39,11 @@ Router.route('/addEvent', function(){
     this.layout('layout');
     this.render('addEventView');
 });
+
+Router.route('/event/:title',{
+    layout:'layout',
+    template: 'eventDetail',
+    data:function(){
+        return Events.findOne({title:this.params.title});
+    }
+});
