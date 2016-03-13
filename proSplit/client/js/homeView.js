@@ -11,3 +11,9 @@ Template.homeView.rendered = function(){
     $('#user-label').removeClass("active");
     $('#more-label').removeClass("active");
 };
+
+Template.homeView.helpers({
+    username: function(){
+        return Meteor.user().username;
+    }
+});
