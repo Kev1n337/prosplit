@@ -19,3 +19,8 @@ Router.route('/more', function() {
 
     this.render('more');
 });
+
+Router.route('/user', function() {
+    this.layout('layout');
+    this.render('userView');
+});
