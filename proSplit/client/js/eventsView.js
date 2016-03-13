@@ -15,16 +15,6 @@ Template.eventsView.rendered = function(){
     $('#user-label').removeClass("active");
     $('#more-label').removeClass("active");
 
-    var eventsAr = [];
-    var events = Events.find().forEach(function(value){
-        eventsAr.push(value.title);
-    });
-    console.log(Events.find().fetch());
-    $.each(events, function(key,value){
-        //var tablerow = '<tr><a href="/event/' + value.title + '"><td><span style="float:left;">' + value.title + '</span><img src="/next.png" style="float: right;width:20px;" /></td></a></tr>';
-        console.log(key + ": " + value);
-        //$('#events').append(tablerow);
-    });
 };
 
 Template.eventsView.events({
