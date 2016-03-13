@@ -1,0 +1,10 @@
+.text-center {
+  text-align:center !important;
+}
+
+.contentPosition {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 80px);
+  top: 70px;
+}
