@@ -13,3 +13,9 @@ Router.route('/', function () {
         this.render('loginView');
     }
 });
+
+Router.route('/more', function() {
+    this.layout('layout');
+
+    this.render('more');
+});
