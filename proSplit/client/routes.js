@@ -8,8 +8,8 @@ Router.configure({
 Router.route('/', function () {
     this.layout('layout');
     if(Meteor.userId()){
-        this.render('home');
+        this.render('homeView');
     }else{
-        //this.render('login');
+        this.render('loginView');
     }
 });
