@@ -24,3 +24,8 @@ Router.route('/user', function() {
     this.layout('layout');
     this.render('userView');
 });
+
+Router.route('/addUser', function(){
+    this.layout('layout');
+    this.render('addUserView');
+});
