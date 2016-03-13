@@ -34,3 +34,8 @@ Router.route('/events', function() {
     this.layout('layout');
     this.render('eventsView');
 });
+
+Router.route('/addEvent', function(){
+    this.layout('layout');
+    this.render('addEventView');
+});
