@@ -1,7 +1,7 @@
 /**
  * Created by Kevin on 13.03.16.
  */
-Template.home.rendered = function(){
+Template.homeView.rendered = function(){
     $('#home img').attr("src", "icons/home_active.png");
     $('#events img').attr("src", "icons/event.png");
     $('#user img').attr("src", "icons/user.png");
