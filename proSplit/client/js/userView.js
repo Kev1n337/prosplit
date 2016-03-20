@@ -18,6 +18,9 @@ Template.userView.rendered = function(){
 
 Template.userView.helpers({
     friends: function(){
-        return Meteor.user().friends;
+        if(Meteor.user()) {
+            return Meteor.user().friends;
+        }
+        return [];
     }
 });
