@@ -2,7 +2,7 @@
  * Created by Kevin on 13.03.16.
  */
 Deps.autorun(function(){
-    Meteor.subscribe('User.userdata');
+    Meteor.subscribe('User.usernames');
 });
 
 Template.addUserView.events({
