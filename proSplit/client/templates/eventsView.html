@@ -1,0 +1,13 @@
+<template name="eventsView">
+    <h1>Events</h1>
+    <a href="/addEvent"><button>Event hinzufügen</button></a>
+    <table class="table table-hover" id="events-table">
+        <tbody>
+        {{#each events}}
+            <tr><td><span style="float:left;">{{title}}</span><img src="/next.png" style="float: right;width:20px;" /></td></tr>
+        {{/each}}
+        </tbody>
+        <a href="/event/{{this.title}}"></a>
+
+    </table>
+</template>
