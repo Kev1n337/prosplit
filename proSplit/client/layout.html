@@ -1,0 +1,26 @@
+<head>
+    <meta charset="UTF-8" />
+    <title>XTsplit</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimal-ui"/>
+    <meta http-equiv="cleartype" content="on">
+
+    <!--Fullscreen-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+</head>
+
+<template name="layout">
+    {{> header}}
+    <div class="container contentPosition">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {{>yield}}
+            </div>
+        </div>
+    </div>
+    {{#if currentUser}}
+        {{> footer}}
+    {{/if}}
+</template>

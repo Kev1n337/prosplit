@@ -1,0 +1,16 @@
+<template name="userView">
+    <h1>Benutzer:</h1>
+    <a href="/addUser">
+        <button>
+            User hinzufügen
+        </button>
+    </a>
+    <table class="table table-hover" id="friends-table">
+        <tbody>
+        {{#each friends}}
+            <tr><td>{{this}}</td></tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+</template>

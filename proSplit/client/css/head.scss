@@ -1,0 +1,24 @@
+@import "default/colors";
+
+#head {
+  width:100%;
+  background-color: $default-blue;
+  height:60px;
+  position:fixed;
+}
+
+#logo {
+  height:60px;
+  width:199px;
+  display:block;
+  margin:auto;
+}
+
+#back {
+  height:35px;
+  width:35px;
+  position:fixed;
+  top:0px;
+  left:0px;
+  margin: 12px 0px 0px 15px;
+}

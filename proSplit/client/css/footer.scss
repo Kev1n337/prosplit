@@ -1,0 +1,48 @@
+@import "default/colors";
+
+.footer {
+  height: 75px !important;
+  margin-top: 10px;
+  border: 0px;
+  border-top:1px solid $default-blue !important;
+}
+
+.footer a div {
+  padding: 2px 0;
+  width:25%;
+  height:160px;
+  text-align: center;
+  vertical-align: middle;
+  color: $footer-text-color !important;
+
+}
+
+.footer a:first-child div {
+  border: none;
+}
+
+.footer a div img {
+  max-height:35px;
+  margin:0 auto;
+  margin-top:10px;
+}
+
+.footer-gradient {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fafafa+0,bfbfbf+100 */
+  background: $footer-background-color; /* Old browsers */
+  background: -moz-linear-gradient(top, $footer-background-color 0%, $footer-background-color 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $footer-background-color 0%, $footer-background-color 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $footer-background-color 0%, $footer-background-color 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$footer-background-color', endColorstr='$footer-background-color', GradientType=0); /* IE6-9 */
+  color: $footer-text-color;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.active {
+  color: $default-blue !important;
+}
