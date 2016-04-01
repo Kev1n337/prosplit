@@ -28,7 +28,7 @@ events: {
 		min:1,
 		max:15
 	},
-	bills: {
+	bills: [{
 		title: {
 			type:String,
 			min:1,
@@ -48,5 +48,5 @@ events: {
 			min:5,
 			max:15
 		}]
-	}
+	}]
 }
