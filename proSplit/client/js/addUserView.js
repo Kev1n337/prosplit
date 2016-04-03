@@ -29,11 +29,10 @@ Template.addUserView.events({
     "click td": function(e){
         var friend = $(e.target).text();
         var user = Meteor.user().username;
-        console.log(user + " adds " + friend);
         Meteor.call("Users.addFriend", user, friend, function(e){
             console.log(e);
         });
-        //Meteor.user().friends.sort();
+        Meteor.user().friends.sort();
         Router.go('/user');
     }
 });
