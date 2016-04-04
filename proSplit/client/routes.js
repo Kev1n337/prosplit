@@ -47,3 +47,10 @@ Router.route('/event/:id',{
         return Events.findOne({_id:this.params.id});
     }
 });
+
+Router.route('/event/:id/:bill', {
+    template: 'billDetailView',
+    data:function(){
+        return Events.findOne({_id:this.params.id}, {fields:{'bills':1}});
+    }
+})
