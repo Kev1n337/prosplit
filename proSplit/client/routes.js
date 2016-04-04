@@ -40,6 +40,13 @@ Router.route('/addEvent', function(){
     this.render('addEventView');
 });
 
+Router.route('/event/:id/addBill', {
+    template: 'addBillView',
+    data:function(){
+        return Events.findOne({_id:this.params.id});
+    }
+});
+
 Router.route('/event/:id',{
     //layout:'layout',
     template: 'eventDetailView',
