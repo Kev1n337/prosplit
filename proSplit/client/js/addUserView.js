@@ -27,8 +27,9 @@ Template.addUserView.events({
     },
 
     "click td": function(e){
-        var username = $(e.target).text();
-        Meteor.call("Users.addFriend", username, function(e){
+        var friend = $(e.target).text();
+        var user = Meteor.user().username;
+        Meteor.call("Users.addFriend", user, friend, function(e){
             console.log(e);
         });
         Meteor.user().friends.sort();

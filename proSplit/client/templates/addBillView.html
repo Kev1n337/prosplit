@@ -1,0 +1,39 @@
+<template name="addBillView">
+    <img src="/back.png" alt="back-icon" onclick="history.back()" id="back"/>
+    <h1 data-id="{{_id}}">Zahlung hinzufügen: </h1>
+
+    <form role="form">
+        <!--Titel-->
+        <div class="form-group">
+            <label for="title">Titel:</label>
+            <input type="text" class="form-control" id="title">
+        </div>
+
+        <!--Betrag-->
+        <div class="form-group">
+            <label for="amount">Betrag:</label>
+            <input type="number" class="form-control" id="amount">
+        </div>
+
+        <!--Bezahler-->
+        <div class="form-group">
+            <label for="payer">Bezahlt von:</label>
+            <select name="payer" id="payer">
+                {{#each friends}}
+                    <option>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <!--Beteiligte-->
+        <div class="row">
+            {{#each friends}}
+                <div class="col-xs-6">
+                    <label><input type="checkbox" value="{{this}}">{{this}}</label>
+                </div>
+            {{/each}}
+        </div>
+    </form>
+
+    <button id="addBill">Zahlung hinzufügen</button>
+</template>

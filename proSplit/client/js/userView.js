@@ -6,10 +6,10 @@ Deps.autorun(function(){
 });
 
 Template.userView.rendered = function(){
-    $('#home img').attr("src", "icons/home.png");
-    $('#events img').attr("src", "icons/event.png");
-    $('#user img').attr("src", "icons/user_active.png");
-    $('#more img').attr("src", "icons/more.png");
+    $('#home img').attr("src", "/icons/home.png");
+    $('#events img').attr("src", "/icons/event.png");
+    $('#user img').attr("src", "/icons/user_active.png");
+    $('#more img').attr("src", "/icons/more.png");
     $('#home-label').removeClass("active");
     $('#event-label').removeClass("active");
     $('#user-label').addClass("active");
