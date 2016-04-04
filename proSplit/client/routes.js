@@ -40,10 +40,10 @@ Router.route('/addEvent', function(){
     this.render('addEventView');
 });
 
-Router.route('/event/:title',{
+Router.route('/event/:id',{
     //layout:'layout',
     template: 'eventDetailView',
     data:function(){
-        return Events.findOne({title:this.params.title});
+        return Events.findOne({_id:this.params.id});
     }
 });
