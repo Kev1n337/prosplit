@@ -14,6 +14,9 @@ Template.homeView.rendered = function(){
 
 Template.homeView.helpers({
     username: function(){
-        return Meteor.user().username;
+        if(Meteor.user()) {
+            return Meteor.user().username;
+        }
+        return "";
     }
 });

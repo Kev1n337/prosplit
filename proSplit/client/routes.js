@@ -72,13 +72,9 @@ Router.route('/event/:id/:bill', {
                         payer: value.payer,
                         receiver: value.receiver
                     };
-
-                    console.log(doc2);
-
                 }
             });
         }
-        console.log("Schleifenende");
         return doc2;
     }
 });

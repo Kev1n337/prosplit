@@ -6,7 +6,7 @@
  */
 Meteor.methods({
     "Events.addEvent":function(title){
-        Events.insert({title:title});
+        Events.insert({title:title, bills:[]});
     },
 
     "Events.addBill":function(eventId, title, amount, payer, receiver){
