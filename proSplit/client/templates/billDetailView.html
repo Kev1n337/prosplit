@@ -1,8 +1,9 @@
 <template name="billDetailView">
     <img src="/back.png" alt="back-icon" onclick="history.back()" id="back"/>
     <h1>{{title}}</h1>
-    <div id="amount">{{amount}} €</div>
-    <div id="payer">Bezahler: {{payer}}</div>
+    <div id="amount">{{amount}} €<br /></div>
+    <div id="payer">Bezahlt von: <br /> <span id="payername">{{payer}}</span></div><br />
+    <h4>Beteiligte:</h4>
     <table class="table table-hover">
         <tbody>
             {{#each receiver}}
