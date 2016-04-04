@@ -11,6 +11,9 @@ Template.addBillView.helpers({
             return Meteor.user().friends;
         }
         return [];
+    },
+    username: function(){
+        return Meteor.user().username;
     }
 });
 

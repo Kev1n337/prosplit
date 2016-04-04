@@ -19,6 +19,7 @@
         <div class="form-group">
             <label for="payer">Bezahlt von:</label>
             <select name="payer" id="payer">
+                <option>{{username}}</option>
                 {{#each friends}}
                     <option>{{this}}</option>
                 {{/each}}
@@ -27,6 +28,9 @@
 
         <!--Beteiligte-->
         <div class="row">
+            <div class="col-xs-6">
+                <label><input type="checkbox" value="{{username}}">{{username}}</label>
+            </div>
             {{#each friends}}
                 <div class="col-xs-6">
                     <label><input type="checkbox" value="{{this}}">{{this}}</label>
