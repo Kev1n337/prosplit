@@ -18,4 +18,9 @@ Template.eventDetailView.events({
         var eventId = $("h1").attr("data-id");
         Router.go('/event/' + eventId + '/' + bill);
     }
+
+    "click addBill": function(){
+        var eventId = $("h1").attr("data-id");
+        Router.go('/event/' + eventId + '/addBill');
+    }
 });
