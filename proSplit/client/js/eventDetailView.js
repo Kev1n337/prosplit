@@ -17,7 +17,7 @@ Template.eventDetailView.events({
         var bill = $(e.target).text(); //Event-Titel
         var eventId = $("h1").attr("data-id");
         Router.go('/event/' + eventId + '/' + bill);
-    }
+    },
 
     "click addBill": function(){
         var eventId = $("h1").attr("data-id");
