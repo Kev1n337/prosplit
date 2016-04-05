@@ -1,12 +1,9 @@
 /**
  * Created by Kevin on 13.03.16.
  */
-/**
- * Created by Kevin on 11.03.16.
- */
 Meteor.methods({
     "Events.addEvent":function(title){
-        Events.insert({title:title, bills:[]});
+        Events.insert({title:title, owner:Meteor.user().username ,bills:[]});
     },
 
     "Events.addBill":function(eventId, title, amount, payer, receiver){
