@@ -3,8 +3,6 @@
  */
 Meteor.startup(function(){
 
-    console.log(Events.findOne());
-
     if(!Meteor.users.findOne()) {
         var user1 = {
             username:"testuser1",
@@ -78,6 +76,7 @@ Meteor.startup(function(){
     if (!Events.findOne()) {
         var event1 = {
             title: "testevent1",
+            owner: "testuser1",
             bills: [{
                 title:"Testbill1",
                 amount: 10,
@@ -93,6 +92,7 @@ Meteor.startup(function(){
 
         var event2 = {
             title: "testevent2",
+            owner: "testuser4",
             bills: [{
                 title:"Testbill1",
                 amount: 10,
