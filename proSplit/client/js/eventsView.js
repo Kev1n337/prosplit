@@ -29,9 +29,7 @@ Template.eventsView.helpers({
     events: function(){
         var events = [];
         var docs = Events.find();
-
-        console.log(docs.fetch());
-
+        
         if(docs) {
             $.each(docs.fetch(), function(i, event){
 
