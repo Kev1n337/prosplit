@@ -79,7 +79,7 @@ Meteor.startup(function(){
             owner: "testuser1",
             bills: [{
                 title:"Testbill1",
-                amount: 10,
+                amount: 10.00,
                 payer: "testuser1",
                 receiver: ["testuser1", "testuser2"]
             }, {
@@ -95,7 +95,7 @@ Meteor.startup(function(){
             owner: "testuser4",
             bills: [{
                 title:"Testbill1",
-                amount: 10,
+                amount: 10.00,
                 payer: "testuser3",
                 receiver: ["testuser3", "testuser5", "testuser1"]
             }, {

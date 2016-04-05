@@ -5,6 +5,10 @@ Router.configure({
     layoutTemplate: 'layout'
 });
 
+Deps.autorun(function(){
+    Meteor.subscribe('Events.eventdata');
+});
+
 Router.route('/', function () {
     this.layout('layout');
     if(Meteor.userId()){
@@ -50,6 +54,9 @@ Router.route('/event/:id/addBill', {
 Router.route('/event/:id',{
     //layout:'layout',
     template: 'eventDetailView',
+    waitOn: function () {
+        return Meteor.subscribe('Events.eventdata');
+    },
     data:function(){
         var event = Events.findOne({_id:this.params.id});
 

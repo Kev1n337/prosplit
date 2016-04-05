@@ -20,7 +20,7 @@ Template.eventsView.rendered = function(){
 Template.eventsView.events({
     "click td": function(e){
         var event = $(e.target).text(); //Event-Titel
-        var id = $(e.target).attr("data-id");
+        var id = $(e.target).data("id");
         Router.go('/event/' + id);
     }
 });
