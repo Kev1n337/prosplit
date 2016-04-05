@@ -30,11 +30,16 @@ Template.eventsView.helpers({
         var events = [];
         var docs = Events.find();
 
+        console.log(docs.fetch());
+
         if(docs) {
             $.each(docs.fetch(), function(i, event){
-                if(event && event.bills) {
+
+                if(event.owner == Meteor.user().username) {
+                    events.push(event);
+                } else {
                     $.each(event.bills, function(j, bill){
-                        if(bill.payer == Meteor.user().username || $.inArray(Meteor.user().username, bill.receiver) > 0) {
+                        if(bill.payer == Meteor.user().username || $.inArray(Meteor.user().username, bill.receiver) > 0 ) {
                             events.push(event);
                             return false;
                         }
