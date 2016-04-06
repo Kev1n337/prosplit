@@ -5,8 +5,9 @@
 .contentPosition {
   position: absolute;
   width: 100%;
-  height: calc(100% - 80px);
+  /*height: calc(100% - 180px);*/ /*Gesamthöhe - (header + footer)*/
   top: 70px;
+  margin-bottom:100px;
 }
 
 .rightAmount {
