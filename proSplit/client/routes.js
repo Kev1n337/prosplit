@@ -132,11 +132,26 @@ Router.route('/event/:id/:bill', {
         if(doc) {
             doc.bills.forEach(function (value) {
                 if (value.title == billTitle) {
+                    var allReceiver = [];
+                    value.receiver.forEach(function(receiver){
+                        allReceiver.push({
+                            name: receiver,
+                            amount: -Number((value.amount / value.receiver.length).toFixed(2))
+                        });
+                    });
+
+                    allReceiver.forEach(function(thisRec){
+                        if(thisRec.name == value.payer) {
+                            thisRec.amount += value.amount;
+                        }
+                        thisRec.class = thisRec.amount >=0 ? "green-text" : "red-text";
+                    });
+
                     doc2 = {
                         title: value.title,
                         amount: value.amount,
                         payer: value.payer,
-                        receiver: value.receiver
+                        receiver: allReceiver
                     };
                 }
             });
