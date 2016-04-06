@@ -28,7 +28,7 @@ Template.eventsView.events({
 Template.eventsView.helpers({
     events: function(){
         var events = [];
-        var docs = Events.find();
+        var docs = Events.find({}, {sort: {createdOn: -1}});
 
         if(docs) {
             $.each(docs.fetch(), function(i, event){
