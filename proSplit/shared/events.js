@@ -3,7 +3,7 @@
  */
 Meteor.methods({
     "Events.addEvent":function(title){
-        Events.insert({title:title, owner:Meteor.user().username ,bills:[]});
+        Events.insert({title:title, owner:Meteor.user().username, createdOn:new Date() ,bills:[]});
     },
 
     "Events.addBill":function(eventId, title, amount, payer, receiver){

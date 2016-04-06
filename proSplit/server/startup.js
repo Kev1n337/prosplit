@@ -74,9 +74,13 @@ Meteor.startup(function(){
     }
 
     if (!Events.findOne()) {
+        var date1 = new Date(2014,0,1);
+        var date2 = new Date(2015,0,1);
+
         var event1 = {
             title: "testevent1",
             owner: "testuser1",
+            createdOn:date1,
             bills: [{
                 title:"Testbill1",
                 amount: 10.00,
@@ -93,6 +97,7 @@ Meteor.startup(function(){
         var event2 = {
             title: "testevent2",
             owner: "testuser4",
+            createdOn:date2,
             bills: [{
                 title:"Testbill1",
                 amount: 10.00,
