@@ -88,12 +88,12 @@ Router.route('/event/:id',{
 
                 $.each(balance, function(index, memb){
                     if(this.name==bill.payer){
-                        memb.actBalance += bill.amount;
+                        memb.actBalance += Number(bill.amount);
                     }
 
                     $.each(bill.receiver, function(index, receiver){
                         if(memb.name==receiver){
-                            var amountPerReceiver = bill.amount / bill.receiver.length;
+                            var amountPerReceiver = Number(bill.amount) / bill.receiver.length;
                             memb.actBalance -= amountPerReceiver;
                         }
                     });
@@ -136,13 +136,14 @@ Router.route('/event/:id/:bill', {
                     value.receiver.forEach(function(receiver){
                         allReceiver.push({
                             name: receiver,
-                            amount: -Number((value.amount / value.receiver.length).toFixed(2))
+                            amount: -Number((Number(value.amount) / value.receiver.length).toFixed(2))
                         });
                     });
 
                     allReceiver.forEach(function(thisRec){
                         if(thisRec.name == value.payer) {
-                            thisRec.amount += value.amount;
+                            thisRec.amount += Number(value.amount);
+                            thisRec.amount = Number((thisRec.amount).toFixed(2));
                         }
                         thisRec.class = thisRec.amount >=0 ? "green-text" : "red-text";
                     });
