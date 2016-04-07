@@ -8,5 +8,9 @@ Meteor.methods({
 
     "Events.addBill":function(eventId, title, amount, payer, receiver){
         Events.update({_id: eventId}, {$push:{'bills': {title: title, amount:amount, payer:payer, receiver:receiver}}});
+    },
+
+    "Events.setEqBills":function(eventId, eqBills){
+        Events.update({_id: eventId}, {$set: {eqBills : eqBills}});
     }
 });
