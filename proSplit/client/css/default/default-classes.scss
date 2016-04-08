@@ -25,3 +25,17 @@
 .hover-cursor {
   cursor:pointer;
 }
+
+.select-input {
+  border-radius:0px !important;
+  border:none !important;
+  font-size:16px !important;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.select-input:focus {
+  outline: none !important;
+}
