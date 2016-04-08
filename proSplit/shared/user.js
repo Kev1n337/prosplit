@@ -3,8 +3,8 @@
  */
 Meteor.methods({
     "Users.addFriend": function(user, friend){
-        Meteor.users.update({username: user}, {$push:{'friends': {name:friend, amount:0}}});
-        Meteor.users.update({username: friend}, {$push:{'friends': {name:user, amount:0}}});
+        Meteor.users.update({username: user}, {$addToSet:{'friends': friend}});
+        Meteor.users.update({username: friend}, {$addToSet:{'friends': user}});
     },
 
     "User.addEvent": function(user, eventId){

@@ -224,32 +224,28 @@ Template.addBillView.events({
                     } else {
                         $.each(eqBills, function(i, bill){
 
-                            var user = Meteor.users.findOne({username:bill.from});
-
-                            if(user) {
-                                var usernames = [];
-                                $.each(user.friends, function(){
-                                    usernames.push(this.name);  //Get String-array of usernames
-                                });
-
-                                if($.inArray(bill.to, usernames) < 0) {  //Bill.to und bill.from nicht befreundet
-                                    Meteor.call("Users.addFriend", bill.from, bill.to, function(err,res){
-                                        if(err) {
-                                            console.log(err);
-                                        } else {
-                                        }
-                                    });
+                            Meteor.call("Users.addFriend", bill.from, bill.to, function(err,res){
+                                if(err) {
+                                    console.log(err);
+                                } else {
                                 }
+                            });
 
+                                /*
                                 $.each(user.friends, function(){
                                     if(this.name == bill.to) {
                                         this.amount -= bill.amount;
                                     }
                                 });
+
+                                console.log(user.username);
+                                console.log(user.friends);
+
                                 Meteor.call("User.setFriends", user.username, user.friends);
+                                */
 
-                            }
 
+                            /*
                             user = Meteor.users.findOne({username:bill.to});
                             if(user) {
                                 $.each(user.friends, function(){
@@ -259,9 +255,11 @@ Template.addBillView.events({
                                 });
                                 Meteor.call("User.setFriends", user.username, user.friends);
                             }
-                            
-                            Router.go('/event/' + eventId);
+                            */
+
                         });
+
+                        Router.go('/event/' + eventId);
                     }
                 });
 

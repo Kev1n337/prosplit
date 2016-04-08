@@ -21,7 +21,7 @@
             <select name="payer" class="form-control select-input" id="payer_val">
                 <option>{{username}}</option>
                 {{#each friends}}
-                    <option>{{name}}</option>
+                    <option>{{this}}</option>
                 {{/each}}
             </select>
         </div>
@@ -37,7 +37,7 @@
             {{#each friends}}
                 <div class="col-xs-6">
                     <div class="checkbox">
-                        <label><input type="checkbox" value="{{name}}">{{name}}</label>
+                        <label><input type="checkbox" value="{{this}}">{{this}}</label>
                     </div>
                 </div>
             {{/each}}
