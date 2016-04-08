@@ -24,7 +24,10 @@ Template.addBillView.helpers({
         return [];
     },
     username: function(){
-        return Meteor.user().username;
+        if(Meteor.user()) {
+            return Meteor.user().username;
+        }
+
     }
 });
 
@@ -74,6 +77,13 @@ Template.addBillView.events({
                     user.sort();
                     $.each(user, function(){
                         balance.push({name: this, actBalance:0});
+                        Meteor.call("User.addEvent", this.toString(), eventId,function(err, res){
+                            if(err){
+                                console.log(err);
+                            } else {
+                                console.log(res);
+                            }
+                        });
                     });
 
                     $.each(event.bills, function(key, bill){
@@ -110,7 +120,6 @@ Template.addBillView.events({
                 $.each(balance, function(i){
                     if(this.actBalance != 0) {
                         this.actBalance = -Number(this.actBalance); //Negativ: Bekommt Geld, Positiv: bezahlt Geld
-                        console.log(this.actBalance);
                     }
                 });
 
@@ -122,14 +131,10 @@ Template.addBillView.events({
                     }
                 });
 
-                console.log(userpay);
 
                 //userpay = [{name:"Kevin", payAmount:12}, {name:"Xsile", payAmount: 1}, {name:"Dave", payAmount:17}];
                 //userget = [{name:"Tim", getAmount:-13}, {name:"Vonny", getAmount: -2}, {name:"André", getAmount:-15}];
 
-                console.log("userpay:");console.log(userpay);
-                console.log("userget:");console.log(userget);
-                console.log("=================");
 
                 userpay.sort(function(a, b) {return b.amount - a.amount;});  //Absteigend sortiert  arsort
                 userget.sort(function(a, b) {return a.amount - b.amount;});  //Aufsteigend sortiert -- nur in Schleife? asort
@@ -142,21 +147,16 @@ Template.addBillView.events({
                 $.each(userpay, function(i, minusUser){
                     userget.sort(function(a, b) {return a.amount - b.amount;});
 
-                    console.log(minusUser);
 
                     $.each(userget, function(j, plusUser){ //Abfrage der größten offnen Summe, nach erstem aufruf abbruch
-                        console.log("Plususer: " + plusUser.name + " getAmount: " + plusUser.getAmount);
                         if(plusUser.getAmount < 0) {
-                            console.log("Plususer " + plusUser.name + " < 0");
                             if(minusUser.payAmount > -plusUser.getAmount) {
-                                console.log("Minususer " + minusUser.name + " > -" + "Plususer " + plusUser.name);
                                 minusUser.payAmount += plusUser.getAmount; //Wenn zu zahlender Betrag größer ist, wird der negative zu erhaltende Betrag addiert.
                                  //Empfänger dann komplett ausgezahlt
                                 eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(-plusUser.getAmount.toFixed(2))}); //Überweisung
 
                                 plusUser.getAmount = 0;
 
-                                console.log(eqBills);
 
                                 while(minusUser.payAmount > 0) { //Zweite bzw. nachfolgende Überweisung (weniger = besser)
 
@@ -170,8 +170,6 @@ Template.addBillView.events({
                                     if(allePlusUserNull) return false;
 
                                     $.each(userget, function(i, plusUser){
-                                        console.log("wDcw");
-                                        console.log(minusUser.payAmount + " <= " + -plusUser.getAmount);
 
                                         var allePlusUserNull = true;
                                         $.each(userget, function(i,plusUser){
@@ -180,12 +178,9 @@ Template.addBillView.events({
                                         if(allePlusUserNull) return false;
 
                                         if(minusUser.payAmount <= -plusUser.getAmount){  //Suche nach kleinstem Bekommen-Eintrag (negativ), der größer ist als aktueller Restzahlbetrag
-                                            // =======================
-                                            console.log("fwdc");
                                             plusUser.getAmount += minusUser.payAmount; //Positiver Schuldenbetrag wird addiert
 
                                             eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(minusUser.payAmount.toFixed(2))}); //Überweisung
-                                            console.log(eqBills);
                                             minusUser.payAmount = 0; //Schuldende ist schuldenfrei
                                             noRestTransfer = true;
                                             return false;
@@ -194,19 +189,13 @@ Template.addBillView.events({
 
                                     if(!noRestTransfer) {
                                         //Aufteilung auf alle verbleibenden Bekommen-Einträge
-                                        console.log("if(!noRestTransfer)");
                                         $.each(userget, function(i, plusUser){
-                                            console.log("minusUSer.payAmount: " + minusUser.payAmount + "plusUser.getAmount: " + plusUser.getAmount);
                                             var allePlusUserNull = true;
                                             $.each(userget, function(i,plusUser){
                                                 if(plusUser.getAmount != 0) allePlusUserNull = false;
                                             });
                                             if(allePlusUserNull) return false;
                                             while(minusUser.payAmount > 0 && plusUser.getAmount != 0) {
-
-                                                console.log("Plususer.amount: " + plusUser.getAmount);
-                                                console.log("MinusUSer,amount" + minusUser.payAmount);
-
                                                 minusUser.payAmount += plusUser.getAmount; //Negativer zu erhaltender Betrag wird addiert.
 
 
@@ -230,14 +219,11 @@ Template.addBillView.events({
                     });
                 });
 
-                console.log(eqBills);
-
-
                 Meteor.call("Events.setEqBills", eventId, eqBills, function(err, res) {
                     if (err) {
                         console.log(err);
                     } else {
-                        Router.go('/event/' + eventId);
+
                     }
                 });
 

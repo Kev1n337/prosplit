@@ -13,7 +13,14 @@ Template.addEventView.events({
             if(err){
                 console.log(err);
             } else {
-                Router.go('/events');
+                Meteor.call("User.addEvent", Meteor.user().username, res, function(err, res){
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        console.log(res);
+                        Router.go('/events');
+                    }
+                });
             }
         });
 
