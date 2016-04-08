@@ -223,7 +223,11 @@ Template.addBillView.events({
                     if (err) {
                         console.log(err);
                     } else {
+                        $.each(eqBills, function(i, bill){
 
+                            Meteor.call("User.addDebt", bill.from, bill.to, bill.amount);
+                            Router.go('/event/' + eventId);
+                        });
                     }
                 });
 
