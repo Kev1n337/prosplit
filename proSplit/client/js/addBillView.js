@@ -5,6 +5,17 @@ Deps.autorun(function(){
     Meteor.subscribe('User.userdata');
 });
 
+Template.addBillView.rendered = function(){
+    $('#home img').attr("src", "/icons/home.png");
+    $('#events img').attr("src", "/icons/event_active.png");
+    $('#user img').attr("src", "/icons/user.png");
+    $('#more img').attr("src", "/icons/more.png");
+    $('#home-label').removeClass("active");
+    $('#event-label').addClass("active");
+    $('#user-label').removeClass("active");
+    $('#more-label').removeClass("active");
+};
+
 Template.addBillView.helpers({
     friends: function(){
         if(Meteor.user()) {
@@ -20,8 +31,8 @@ Template.addBillView.helpers({
 Template.addBillView.events({
     "click #addBill":function(){
         var title = $("#title").val();
-        var amount = $("#amount").val();
-        var payer= $("#payer").val();
+        var amount = $("#sum").val();
+        var payer= $("#payer_val").val();
         var receiver = $('input:checkbox:checked').map(function () {
             return this.value;
         }).get();
