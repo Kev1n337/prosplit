@@ -141,7 +141,7 @@ Template.addBillView.events({
                                 console.log("Minususer " + minusUser.name + " > -" + "Plususer " + plusUser.name);
                                 minusUser.payAmount += plusUser.getAmount; //Wenn zu zahlender Betrag größer ist, wird der negative zu erhaltende Betrag addiert.
                                  //Empfänger dann komplett ausgezahlt
-                                eqBills.push({from:minusUser.name, to:plusUser.name, amount:-plusUser.getAmount}); //Überweisung
+                                eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(-plusUser.getAmount.toFixed(2))}); //Überweisung
 
                                 plusUser.getAmount = 0;
 
@@ -173,7 +173,7 @@ Template.addBillView.events({
                                             console.log("fwdc");
                                             plusUser.getAmount += minusUser.payAmount; //Positiver Schuldenbetrag wird addiert
 
-                                            eqBills.push({from:minusUser.name, to:plusUser.name, amount:minusUser.payAmount}); //Überweisung
+                                            eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(minusUser.payAmount.toFixed(2))}); //Überweisung
                                             console.log(eqBills);
                                             minusUser.payAmount = 0; //Schuldende ist schuldenfrei
                                             noRestTransfer = true;
@@ -199,7 +199,7 @@ Template.addBillView.events({
                                                 minusUser.payAmount += plusUser.getAmount; //Negativer zu erhaltender Betrag wird addiert.
 
 
-                                                eqBills.push({from:minusUser.name, to:plusUser.name, amount:-plusUser.getAmount}); //Überweisung
+                                                eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(-plusUser.getAmount.toFixed(2))}); //Überweisung
                                                 plusUser.getAmount = 0; //Empfänger ist ausgezahlt
 
                                             }
@@ -211,7 +211,7 @@ Template.addBillView.events({
                             } else {
                                 plusUser.getAmount += minusUser.payAmount; //Wenn negative zu erhaltende Betrag größer ist, wird der positive Schuldbetrag addiert.
 
-                                eqBills.push({from:minusUser.name, to:plusUser.name, amount:minusUser.payAmount}); //Überweisung
+                                eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(minusUser.payAmount.toFixed(2))}); //Überweisung
                                 minusUser.payAmount = 0; //Schuldende ist schuldenfrei
                             }
                             return false;

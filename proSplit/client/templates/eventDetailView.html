@@ -20,6 +20,15 @@
         </tbody>
     </table>
 
+    <h3>Ausgleichszahlungen:</h3>
+    <table class="table table-hover">
+        <tbody>
+        {{#each event.eqBills}}
+            <tr><td><span style="float:left;">{{from}} an {{to}}</span><span class="rightAmount">{{amount}} €</span></td></tr>
+        {{/each}}
+        </tbody>
+    </table>
+
     <button id="addBill">Zahlung hinzufügen</button>
 
 </template>
