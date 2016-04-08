@@ -3,8 +3,6 @@
  */
 Meteor.startup(function(){
 
-    console.log(Events.findOne());
-
     if(!Meteor.users.findOne()) {
         var user1 = {
             username:"testuser1",
@@ -12,13 +10,13 @@ Meteor.startup(function(){
             friends:[
                 {
                     name: "testuser2",
-                    debt: 12.03
+                    amount: 12.03
                 }, {
                     name: "testuser3",
-                    debt: -5.03
+                    amount: -5.03
                 }, {
                     name: "testuser5",
-                    debt: 0
+                    amount: 0
                 }
             ]
         };
@@ -29,7 +27,7 @@ Meteor.startup(function(){
             friends:[
                 {
                     name: "testuser1",
-                    debt: -12.03
+                    amount: -12.03
                 }
             ]
         };
@@ -40,10 +38,10 @@ Meteor.startup(function(){
             friends:[
                 {
                     name: "testuser1",
-                    debt: 5.03
+                    amount: 5.03
                 }, {
                     name: "testuser5",
-                    debt: 1
+                    amount: 1
                 }
             ]
         };
@@ -60,10 +58,10 @@ Meteor.startup(function(){
             friends:[
                 {
                     name: "testuser1",
-                    debt: 0
+                    amount: 0
                 }, {
                     name: "testuser3",
-                    debt: -1
+                    amount: -1
                 }
             ]
         };
@@ -73,14 +71,37 @@ Meteor.startup(function(){
         Accounts.createUser(user3);
         Accounts.createUser(user4);
         Accounts.createUser(user5);
+
+        Meteor.users.update({username: "testuser1"}, {$push:{'friends': {name: "testuser2", amount:12.03}}});
+        Meteor.users.update({username: "testuser1"}, {$push:{'friends': {name: "testuser3", amount:-5.03}}});
+        Meteor.users.update({username: "testuser1"}, {$push:{'friends': {name: "testuser5", amount:0}}});
+
+        Meteor.users.update({username: "testuser2"}, {$push:{'friends': {name: "testuser1", amount:-12.03}}});
+
+        Meteor.users.update({username: "testuser3"}, {$push:{'friends': {name: "testuser1", amount:5.03}}});
+        Meteor.users.update({username: "testuser3"}, {$push:{'friends': {name: "testuser5", amount:1}}});
+
+        Meteor.users.update({username: "testuser5"}, {$push:{'friends': {name: "testuser1", amount:0}}});
+        Meteor.users.update({username: "testuser5"}, {$push:{'friends': {name: "testuser3", amount:-1}}});
+
+
+
+
+
+
     }
 
     if (!Events.findOne()) {
+        var date1 = new Date(2014,0,1);
+        var date2 = new Date(2015,0,1);
+
         var event1 = {
             title: "testevent1",
+            owner: "testuser1",
+            createdOn:date1,
             bills: [{
                 title:"Testbill1",
-                amount: 10,
+                amount: 10.00,
                 payer: "testuser1",
                 receiver: ["testuser1", "testuser2"]
             }, {
@@ -93,9 +114,11 @@ Meteor.startup(function(){
 
         var event2 = {
             title: "testevent2",
+            owner: "testuser4",
+            createdOn:date2,
             bills: [{
                 title:"Testbill1",
-                amount: 10,
+                amount: 10.00,
                 payer: "testuser3",
                 receiver: ["testuser3", "testuser5", "testuser1"]
             }, {

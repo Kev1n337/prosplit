@@ -12,13 +12,14 @@
         <!--Betrag-->
         <div class="form-group">
             <label for="amount">Betrag:</label>
-            <input type="number" class="form-control" id="amount">
+            <input type="number" class="form-control" id="sum">
         </div>
 
         <!--Bezahler-->
         <div class="form-group">
             <label for="payer">Bezahlt von:</label>
-            <select name="payer" id="payer">
+            <select name="payer" class="form-control select-input" id="payer_val">
+                <option>{{username}}</option>
                 {{#each friends}}
                     <option>{{this}}</option>
                 {{/each}}
@@ -26,13 +27,22 @@
         </div>
 
         <!--Beteiligte-->
+        <br /><label>Beteiligte:</label>
         <div class="row">
+            <div class="col-xs-6">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="{{username}}">{{username}}</label>
+                </div>
+            </div>
             {{#each friends}}
                 <div class="col-xs-6">
-                    <label><input type="checkbox" value="{{this}}">{{this}}</label>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="{{this}}">{{this}}</label>
+                    </div>
                 </div>
             {{/each}}
         </div>
+        <br />
     </form>
 
     <button id="addBill">Zahlung hinzufügen</button>

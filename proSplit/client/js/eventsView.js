@@ -20,14 +20,33 @@ Template.eventsView.rendered = function(){
 Template.eventsView.events({
     "click td": function(e){
         var event = $(e.target).text(); //Event-Titel
-        var id = $(e.target).attr("data-id");
-        console.log(id);
+        var id = $(e.target).data("id");
         Router.go('/event/' + id);
     }
 });
 
 Template.eventsView.helpers({
     events: function(){
-        return Events.find();
+        var events = [];
+        var docs = Events.find({}, {sort: {createdOn: -1}});
+
+        if(docs) {
+            $.each(docs.fetch(), function(i, event){
+
+                if(event.owner == Meteor.user().username) {
+                    events.push(event);
+                } else {
+                    $.each(event.bills, function(j, bill){
+                        if(bill.payer == Meteor.user().username || $.inArray(Meteor.user().username, bill.receiver) > 0 ) {
+                            events.push(event);
+                            return false;
+                        }
+                    });
+                }
+
+            });
+        }
+
+        return events;
     }
 });

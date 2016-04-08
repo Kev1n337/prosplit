@@ -4,7 +4,7 @@
     <table class="table table-hover" id="events-table">
         <tbody>
         {{#each events}}
-            <tr><td data-id="{{_id}}"><span style="float:left;">{{title}}</span><img src="/next.png" style="float: right;width:20px;" /></td></tr>
+            <tr><td data-id="{{_id}}"><span style="float:left;" data-id="{{_id}}">{{title}}</span><img src="/next.png" style="float: right;width:20px;" data-id="{{_id}}" /></td></tr>
         {{/each}}
         </tbody>
     </table>
