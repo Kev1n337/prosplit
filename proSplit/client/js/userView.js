@@ -54,6 +54,7 @@ Template.userView.helpers({
             }
 
             $.each(contacts, function(){
+                this.amount = Number(this.amount.toFixed(2));
                 if(this.amount < 0) {
                     this.cssClass = "red-text";
                 } else {

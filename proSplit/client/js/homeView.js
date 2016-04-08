@@ -3,6 +3,7 @@
  */
 Deps.autorun(function(){
     Meteor.subscribe('Events.lastEvents');
+    Meteor.subscribe('Users.userdata');
 });
 
 Template.homeView.rendered = function(){
@@ -25,10 +26,34 @@ Template.homeView.helpers({
     },
 
     events: function(){
-        var events = [];
-        console.log(Events.find().fetch());
-        return Events.find({}, {$sort: {createdOn:1}});
 
-        return events;
+        var events = [];
+        if(Meteor.user() && Meteor.user().events) {
+            var eventsSub = Meteor.user().events;
+
+            $.each(eventsSub, function(){
+                events.push(Events.findOne({_id:this.toString()}));
+            });
+
+            events.sort(function(a, b) {
+                return new Date(b.createdOn) - new Date(a.createdOn);
+            });
+
+            return events.slice(0,2);
+        }
+
+
+        return [];
+    }
+});
+
+Template.homeView.events({
+    "click td": function(e){
+        var id = $(e.target).data("id");
+        if(id == "show_more") {
+            Router.go('/events');
+        } else {
+            Router.go('/event/' + id);
+        }
     }
 });

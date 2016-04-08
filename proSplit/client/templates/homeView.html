@@ -2,11 +2,12 @@
     <h1>Willkommen, {{username}}</h1>
 
     <h3>Letzte Events:</h3>
-    <table class="table table-hover">
+    <table class="table table-hover lastevents">
         <tbody>
             {{#each events}}
                 <tr><td data-id="{{_id}}"><span style="float:left;" data-id="{{_id}}">{{title}}</span><img src="/next.png" style="float: right;width:20px;" data-id="{{_id}}" /></td></tr>
             {{/each}}
+            <tr><td class="show_more" data-id="show_more"><span style="float:left;" data-id="show_more">Mehr anzeigen ...</span><img src="/next.png" data-id="show_more" style="float: right;width:20px;" data-id="{{_id}}" /></td></tr>
         </tbody>
     </table>
 </template>
