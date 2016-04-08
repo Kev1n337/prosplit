@@ -12,6 +12,11 @@ Meteor.methods({
     },
 
     "User.addDebt": function(user, friend, amount){
-        Meteor.users.update({username: user, 'friends.name':friend}, {$set:{'friends.$.amount': amount}});
+        Meteor.users.update({username: user, 'friends.name':friend}, {$set:{'friends.$.amount': friends.$.amount-amount}});
+        Meteor.users.update({username: friend, 'friends.name':user}, {$set:{'friends.$.amount': friends.$.amount+amount}});
+    },
+
+    "User.setFriends":function(user, friends){
+        Meteor.users.update({username:user}, {$set: {'friends': friends}});
     }
 });

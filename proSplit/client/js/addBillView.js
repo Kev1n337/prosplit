@@ -198,7 +198,6 @@ Template.addBillView.events({
                                             while(minusUser.payAmount > 0 && plusUser.getAmount != 0) {
                                                 minusUser.payAmount += plusUser.getAmount; //Negativer zu erhaltender Betrag wird addiert.
 
-
                                                 eqBills.push({from:minusUser.name.toString(), to:plusUser.name.toString(), amount:Number(-plusUser.getAmount.toFixed(2))}); //Überweisung
                                                 plusUser.getAmount = 0; //Empfänger ist ausgezahlt
 
@@ -225,7 +224,42 @@ Template.addBillView.events({
                     } else {
                         $.each(eqBills, function(i, bill){
 
-                            Meteor.call("User.addDebt", bill.from, bill.to, bill.amount);
+                            var user = Meteor.users.findOne({username:bill.from});
+
+                            if(user) {
+                                var usernames = [];
+                                $.each(user.friends, function(){
+                                    usernames.push(this.name);  //Get String-array of usernames
+                                });
+
+                                if($.inArray(bill.to, usernames) < 0) {  //Bill.to und bill.from nicht befreundet
+                                    Meteor.call("Users.addFriend", bill.from, bill.to, function(err,res){
+                                        if(err) {
+                                            console.log(err);
+                                        } else {
+                                        }
+                                    });
+                                }
+
+                                $.each(user.friends, function(){
+                                    if(this.name == bill.to) {
+                                        this.amount -= bill.amount;
+                                    }
+                                });
+                                Meteor.call("User.setFriends", user.username, user.friends);
+
+                            }
+
+                            user = Meteor.users.findOne({username:bill.to});
+                            if(user) {
+                                $.each(user.friends, function(){
+                                    if(this.name == bill.from) {
+                                        this.amount += bill.amount;
+                                    }
+                                });
+                                Meteor.call("User.setFriends", user.username, user.friends);
+                            }
+                            
                             Router.go('/event/' + eventId);
                         });
                     }
