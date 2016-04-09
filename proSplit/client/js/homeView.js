@@ -55,15 +55,9 @@ Template.homeView.helpers({
                 contacts.push({name: this, amount:0});
             });
 
-            //var user = Meteor.users.findOne({username:Meteor.user().username});
-
-            console.log(Meteor.user());
-
             if(Meteor.user() && Meteor.user().events) {
                 $.each(Meteor.user().events, function () {
                     var event = Events.findOne({_id: this.toString()});
-                    console.log("Event: ");
-                    console.log(event);
                     $.each(event.eqBills, function (i, bill) {
                         if (Meteor.user().username == bill.to) {
                             $.each(contacts, function () {
@@ -83,12 +77,10 @@ Template.homeView.helpers({
                 });
             }
 
-            console.log(contacts);
 
             var finalArray = [];
 
             $.each(contacts, function(i){
-                console.log(this);
                 this.amount = Number(this.amount.toFixed(2));
                 if(this.amount < 0) {
                     this.cssClass = "red-text";
