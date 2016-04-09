@@ -8,5 +8,10 @@
     </form>
     <table class="table table-hover" id="results">
         <!-- Username results here -->
+        <tbody>
+            {{#each users}}
+                <tr><td><span style="float:left;">{{this}}</span><img src="/next.png" style="float: right;width:20px;" /></td></tr>
+            {{/each}}
+        </tbody>
     </table>
 </template>
