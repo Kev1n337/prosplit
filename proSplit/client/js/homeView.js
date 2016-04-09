@@ -106,7 +106,7 @@ Template.homeView.helpers({
 });
 
 Template.homeView.events({
-    "click td": function(e){
+    "click .lastevents": function(e){
         var id = $(e.target).data("id");
         if(id == "show_more") {
             Router.go('/events');
