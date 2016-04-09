@@ -27,10 +27,6 @@ Template.userView.helpers({
                 contacts.push({name: this, amount:0});
             });
 
-            //var user = Meteor.users.findOne({username:Meteor.user().username});
-
-            console.log(Meteor.user());
-
             if(Meteor.user() && Meteor.user().events) {
                 $.each(Meteor.user().events, function () {
                     var event = Events.findOne({_id: this.toString()});
@@ -61,7 +57,6 @@ Template.userView.helpers({
                     this.cssClass = "green-text";
                 }
 
-                console.log(this);
             });
 
             return contacts;
