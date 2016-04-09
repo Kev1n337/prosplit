@@ -3,7 +3,7 @@
  */
 Meteor.methods({
     "Events.addEvent":function(title){
-        return Events.insert({title:title, owner:Meteor.user().username, createdOn:new Date() ,bills:[]});
+        return Events.insert({title:title, owner:Meteor.user().username, createdOn:new Date() ,bills:[], eqBills:[]});
         //Meteor.users.update({username:Meteor.user().username}, $push:{events:})
     },
 
