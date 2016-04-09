@@ -10,4 +10,13 @@
             <tr><td class="show_more" data-id="show_more"><span style="float:left;" data-id="show_more">Mehr anzeigen ...</span><img src="/next.png" data-id="show_more" style="float: right;width:20px;" /></td></tr>
         </tbody>
     </table>
+
+    <h3>Offene Ausgleichszahlungen:</h3>
+    <table class="table table-hover lastevents">
+        <tbody>
+        {{#each openBills}}
+            <tr><td><span style="float:left;">{{name}}</span><span class="rightAmount {{cssClass}}">{{amount}} €</span></td></tr>
+        {{/each}}
+        </tbody>
+    </table>
 </template>

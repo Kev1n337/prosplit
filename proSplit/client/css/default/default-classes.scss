@@ -2,12 +2,21 @@
   text-align:center !important;
 }
 
+body {
+  position:relative;
+  min-height:100%;
+}
+
 .contentPosition {
   position: absolute;
   width: 100%;
-  /*height: calc(100% - 180px);*/ /*Gesamthöhe - (header + footer)*/
+  min-height: calc(100% - 180px); /*Gesamthöhe - (header + footer)*/
   top: 70px;
-  margin-bottom:100px;
+  /*margin-bottom:100px;*/
+  clear:both;
+  padding-bottom:100px;
+
+  /*bottom:-150px;*/
 }
 
 .rightAmount {
