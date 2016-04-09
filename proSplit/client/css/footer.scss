@@ -1,7 +1,7 @@
 @import "default/colors";
 
 .footer {
-  height: 75px !important;
+  height: 60px !important;
   margin-top: 10px;
   border: 0px;
   border-top:1px solid $default-blue !important;
@@ -11,7 +11,7 @@
 .footer a div {
   padding: 2px 0;
   width:25%;
-  height:160px;
+  height:150px;
   text-align: center;
   vertical-align: middle;
   color: $footer-text-color !important;
@@ -23,9 +23,9 @@
 }
 
 .footer a div img {
-  max-height:35px;
+  max-height:25px;
   margin:0 auto;
-  margin-top:10px;
+  margin-top:7px;
 }
 
 .footer-gradient {
