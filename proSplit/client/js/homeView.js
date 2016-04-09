@@ -44,6 +44,68 @@ Template.homeView.helpers({
 
 
         return [];
+    },
+
+    openBills: function(){
+        var contacts = [];
+
+        if(Meteor.user() && Meteor.user().friends) {
+            var friends = Meteor.user().friends;
+            $.each(friends, function(){
+                contacts.push({name: this, amount:0});
+            });
+
+            //var user = Meteor.users.findOne({username:Meteor.user().username});
+
+            console.log(Meteor.user());
+
+            if(Meteor.user() && Meteor.user().events) {
+                $.each(Meteor.user().events, function () {
+                    var event = Events.findOne({_id: this.toString()});
+                    console.log("Event: ");
+                    console.log(event);
+                    $.each(event.eqBills, function (i, bill) {
+                        if (Meteor.user().username == bill.to) {
+                            $.each(contacts, function () {
+                                if (this.name == bill.from) {
+                                    this.amount += bill.amount;
+                                }
+                            });
+                        }
+                        if (Meteor.user().username == bill.from) {
+                            $.each(contacts, function () {
+                                if (this.name == bill.to) {
+                                    this.amount -= bill.amount;
+                                }
+                            });
+                        }
+                    });
+                });
+            }
+
+            console.log(contacts);
+
+            var finalArray = [];
+
+            $.each(contacts, function(i){
+                console.log(this);
+                this.amount = Number(this.amount.toFixed(2));
+                if(this.amount < 0) {
+                    this.cssClass = "red-text";
+                    finalArray.push(this);
+                } else if(this.amount == 0) {
+                } else {
+                    this.cssClass = "green-text";
+                    finalArray.push(this);
+                }
+
+            });
+
+
+
+            return finalArray;
+        }
+        return [];
     }
 });
 
