@@ -1,22 +1,32 @@
 <template name="homeView">
     <h1>Willkommen, {{username}}</h1>
+    <div class="homeContent">
+        {{#with events}}
+            {{#if this.length}}
+                <h3>Letzte Events:</h3>
+                <table class="table table-hover lastevents">
+                    <tbody>
+                        {{#each this}}
+                            <tr><td data-id="{{_id}}"><span style="float:left;" data-id="{{_id}}">{{title}}</span><img src="/next.png" style="float: right;width:20px;" data-id="{{_id}}" /></td></tr>
+                        {{/each}}
+                        <tr><td class="show_more" data-id="show_more"><span style="float:left;" data-id="show_more">Mehr anzeigen ...</span><img src="/next.png" data-id="show_more" style="float: right;width:20px;" /></td></tr>
+                    </tbody>
+                </table>
+            {{/if}}
+        {{/with}}
 
-    <h3>Letzte Events:</h3>
-    <table class="table table-hover lastevents">
-        <tbody>
-            {{#each events}}
-                <tr><td data-id="{{_id}}"><span style="float:left;" data-id="{{_id}}">{{title}}</span><img src="/next.png" style="float: right;width:20px;" data-id="{{_id}}" /></td></tr>
-            {{/each}}
-            <tr><td class="show_more" data-id="show_more"><span style="float:left;" data-id="show_more">Mehr anzeigen ...</span><img src="/next.png" data-id="show_more" style="float: right;width:20px;" /></td></tr>
-        </tbody>
-    </table>
 
-    <h3>Offene Ausgleichszahlungen:</h3>
-    <table class="table table-hover lastevents">
-        <tbody>
-        {{#each openBills}}
-            <tr><td><span style="float:left;">{{name}}</span><span class="rightAmount {{cssClass}}">{{amount}} €</span></td></tr>
-        {{/each}}
-        </tbody>
-    </table>
+        {{#with openBills}}
+            {{#if this.length}}
+                <h3>Offene Ausgleichszahlungen:</h3>
+                <table class="table table-hover lastevents">
+                    <tbody>
+                        {{#each this}}
+                            <tr><td><span style="float:left;">{{name}}</span><span class="rightAmount {{cssClass}}">{{amount}} €</span></td></tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            {{/if}}
+        {{/with}}
+    </div>
 </template>
