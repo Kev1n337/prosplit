@@ -15,7 +15,20 @@ Template.moreView.rendered = function(){
 Template.moreView.events({
     "click .logout": function(event){
         event.preventDefault();
-        Meteor.logout();
-        Router.go('/');
+
+    },
+
+    "click td":function(e){
+
+        var eventId = $(e.target).attr("data-id");
+
+        if(eventId == "about") Router.go('/about');
+        if(eventId == "impressum") Router.go('/impressum');
+        if(eventId == "datenschutz") Router.go('/datenschutz');
+        if(eventId == "agb") Router.go('/agb');
+        if(eventId == "logout")  {
+            Meteor.logout();
+            Router.go('/');
+        }
     }
 });

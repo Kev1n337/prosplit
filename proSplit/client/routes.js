@@ -160,3 +160,23 @@ Router.route('/event/:id/:bill', {
         return doc2;
     }
 });
+
+Router.route('/impressum', function() {
+    this.layout('layout');
+    this.render('impressum');
+});
+
+Router.route('/agb', function() {
+    this.layout('layout');
+    this.render('agb');
+});
+
+Router.route('/datenschutz', function() {
+    this.layout('layout');
+    this.render('datenschutz');
+});
+
+Router.route('/about', function() {
+    this.layout('layout');
+    this.render('about');
+});
