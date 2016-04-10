@@ -15,6 +15,10 @@ Template.homeView.rendered = function(){
     $('#event-label').removeClass("active");
     $('#user-label').removeClass("active");
     $('#more-label').removeClass("active");
+
+    if($(".homeContent").text().trim() == "") {
+        $(".homeContent").append("<br /><h3>Schön, dass Du hier bist!</h3><br/><p>Scheinbar bist Du zum ersten Mal hier.<br /><br /> Um loszulegen, füge unter <a href='/user'>Benutzer</a> neue Kontakte hinzu.<br/> Wenn Du Kontakte hinzugefügt hast, kannst Du ein <a href='/addEvent'>Event erstellen</a> und Deine Kontakte in Zahlungen als Bezahler und Beteiligte verwenden.</p><p> An dieser Stelle findest Du später die letzten Events und noch ausstehende Ausgleichszahlungen.</p><p>Weitere Infos findest Du <a href='/more'>hier</a>. <p>Viel Spaß mit proSplit!</p>");
+    }
 };
 
 Template.homeView.helpers({
@@ -102,7 +106,7 @@ Template.homeView.helpers({
 });
 
 Template.homeView.events({
-    "click td": function(e){
+    "click .lastevents": function(e){
         var id = $(e.target).data("id");
         if(id == "show_more") {
             Router.go('/events');
