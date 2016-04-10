@@ -26,6 +26,7 @@ Template.addUserView.helpers({
 
 Template.addUserView.events({
     "input #searchUser": function(event){
+        event.preventDefault();
         var inputname = $(event.target).val();
         $('#results').empty();
         var userDocs;
