@@ -9,6 +9,9 @@ Template.addEventView.events({
     "click #addEvent": function(event){
         event.preventDefault();
         var title = $("#eventTitle").val().trim();
+
+        if(title == "") $("#eventTitle").addClass("errInput");
+
         if(title != "") {
             Meteor.call("Events.addEvent", title, function (err, res) {
                 if (err) {
