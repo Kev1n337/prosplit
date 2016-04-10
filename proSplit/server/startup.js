@@ -3,6 +3,8 @@
  */
 Meteor.startup(function(){
 
+    /*
+
     if(!Meteor.users.findOne()) {
         var user1 = {
             username:"testuser1",
@@ -132,5 +134,7 @@ Meteor.startup(function(){
         Events.insert(event1);
         Events.insert(event2);
     }
+
+    */
 
 });
