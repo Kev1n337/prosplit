@@ -9,24 +9,24 @@ users: {
 		min:5,
 		max:15
 	}],
-	debts: [{
-		receiver:{
-			type:String,
-			min:5,
-			max:15
-		},
-		amount:{
-			type:Number,
-			min:0
-		}
+	events: [{
+		type:String
 	}]
-}
+},
 
 events: {
 	title: {
 		type:String,
 		min:1,
 		max:15
+	},
+	owner: {
+		type: String,
+		min:5,
+		max:15
+	},
+	createdOn: {
+		type:Date
 	},
 	bills: [{
 		title: {
@@ -48,5 +48,21 @@ events: {
 			min:5,
 			max:15
 		}]
+	}],
+	eqBills: [{
+		from: {
+			type:String,
+			min:5,
+			max:15
+		},
+		to: {
+			type:String,
+			min:5,
+			max:15
+		},
+		amount: {
+			type:Number,
+			min:0
+		}
 	}]
 }
