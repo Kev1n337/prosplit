@@ -40,8 +40,17 @@ Template.addBillView.events({
             return this.value;
         }).get();
         var eventId = $("h1").attr("data-id");
+        var regex  = /^[1-9]\d*(((,\d{3}){1})?(\.\d{0,2})?)$/;
 
-        if(title != "" && amount!="" && receiver.length>0 ) {
+        if(title == "") $("#title").addClass("errInput");
+        else $("#title").removeClass("errInput");
+        if(amount == "" || !regex.test(amount)) $("#sum").addClass("errInput");
+        else $("#sum").removeClass("errInput");
+        if(receiver.length == 0) $(".receiverInfo").append("<p class='errInfo'>Bitte mindestens einen Beteiligten angeben.</p>");
+        else $(".errInfo").remove();
+
+
+        if(title != "" && amount!="" && regex.test(amount) && receiver.length>0 ) {
 
             Meteor.call("Events.addBill", eventId, title, amount, payer, receiver, function (err, res) {
                 if (err) {
